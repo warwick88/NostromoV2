@@ -10,7 +10,7 @@ import PIL.Image
 # Guide on images for layout? https://stackoverflow.com/questions/67079155/displaying-an-image-using-pysimplegui-without-having-to-use-an-event-listener
 # Guide on images etc.best free
 # This is how many rows are within your application and what they do
-layout = [[sg.Text('Your typed chars appear here:'), sg.Text(size=(15,1), key='-OUTPUT-')],
+layout = [[sg.Text('Your typed chars appear here:'), sg.Multiline(size=(30, 5), key='-OUTPUT-')],
           [sg.Input(key='-IN-')],
           [sg.Button('Show'), sg.Button('Exit')]]
 
@@ -37,8 +37,15 @@ while True:  # Event Loop
     if event == 'Show':
         if values['-IN-'] == 'Test':  # So this fails when you added a second if elif probably!
             window['-OUTPUT-'].update('What shall we test?')
-        elif 'wea' in values['-IN-']:
+        elif values['-IN-'] == 'wea':
             window['-OUTPUT-'].update('Did you want weather?')
+        elif str('story') in values['-IN-']:
+            window['-OUTPUT-'].update('PRIORITY ONE:'"\n"
+                                      'INSURE RETURN OF ORGANISM'"\n"
+                                      'FOR ANALYSIS.'"\n"
+                                      'ALL OTHER CONSIDERATIONS SECONDARY.'"\n"
+                                      'CREW EXPENDABLE.'"\n")
+
         else:
             window['-OUTPUT-'].update(values['-IN-'])
         print(values['-IN-'])

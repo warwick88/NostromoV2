@@ -5,7 +5,7 @@ import PIL.Image
 # it is the Pysimegui guide it's at Recipe - Printing persistent window
 
 
-layout = [[sg.Image(filename="Weyland.png",size=(200, 200), key='-IMAGE-')],
+layout = [[sg.Image(size=(200, 200), key='-IMAGE-')],
           [sg.Text('Response: '), sg.Text(size=(15,1), key='-OUTPUT-')],
           [sg.Input(key='-IN-')],
           #[sg.Text("Terminal: "), sg.InputText(key="-IN-")],
@@ -22,8 +22,8 @@ window = sg.Window('Nostromo_v1', layout, size=(700, 400),
                    titlebar_text_color='orange',
                    )
 
-#fp = open("Weyland.png", "rb")
-#img = PIL.Image.open(fp)
+fp = open("Weyland.png", "rb")
+img = PIL.Image.open(fp)
 
 
 

@@ -5,8 +5,8 @@ import PIL.Image
 # it is the Pysimegui guide it's at Recipe - Printing persistent window
 
 
-layout = [[sg.Image(filename="Weyland.png",size=(200, 200), key='-IMAGE-')],
-          [sg.Text('Response: '), sg.Text(size=(15,1), key='-OUTPUT-')],
+layout = [[sg.Image(filename="Weyland.png", size=(375, 200), key='-IMAGE-')],
+          [sg.Text('Response: '), sg.Multiline(size=(30, 5), key='-OUTPUT-')],
           [sg.Input(key='-IN-')],
           #[sg.Text("Terminal: "), sg.InputText(key="-IN-")],
           #[sg.Text("Output: "), sg.Output(key="-OUT-")],
@@ -22,8 +22,8 @@ window = sg.Window('Nostromo_v1', layout, size=(700, 400),
                    titlebar_text_color='orange',
                    )
 
-#fp = open("Weyland.png", "rb")
-#img = PIL.Image.open(fp)
+fp = open("Weyland.png", "rb")
+img = PIL.Image.open(fp)
 
 
 
@@ -36,8 +36,17 @@ while True:  # Event Loop
     # print(event, values) this was annoying it kept printing rubbish
     if event in (None, 'Exit'):
         break
-    if event == "Enter":
-        window['-OUTPUT-'].update(values['-IN-'])
+    if event == 'Enter':
+        if values['-IN-'] == 'Test':  # So this fails when you added a second if elif probably!
+            window['-OUTPUT-'].update('What shall we test?')
+        elif values['-IN-'] == 'wea':
+            window['-OUTPUT-'].update('Did you want weather?')
+        elif str('story') in values['-IN-']:
+            window['-OUTPUT-'].update('PRIORITY ONE:'"\n"
+                                      'INSURE RETURN OF ORGANISM'"\n"
+                                      'FOR ANALYSIS.'"\n"
+                                      'ALL OTHER CONSIDERATIONS SECONDARY.'"\n"
+                                      'CREW EXPENDABLE.'"\n")
     if event == "Alien":
         print("Excellent choice, now starting Alien Directors cut")
     if event == "Aliens":
@@ -49,3 +58,4 @@ while True:  # Event Loop
         img.show()
         break
 window.close()
+

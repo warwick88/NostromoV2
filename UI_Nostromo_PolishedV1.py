@@ -5,13 +5,14 @@ import PIL.Image
 # it is the Pysimegui guide it's at Recipe - Printing persistent window
 
 
-layout = [[sg.Image(filename="Weyland.png",size=(200, 200), key='-IMAGE-')],
-          [sg.Text('Response: '), sg.Text(size=(15,1), key='-OUTPUT-')],
-          [sg.Input(key='-IN-')],
+layout = [[sg.Image(filename="Weyland.png", size=(375, 200), key='-IMAGE-')],
+          [sg.Text('Input: '), sg.Input(key='-IN-')],
+          [sg.Text('Response: '), sg.Multiline(size=(30, 5),background_color='grey', key='-OUTPUT-')],
+          [sg.Button('Enter', bind_return_key=True), sg.Button("Exit")],
           #[sg.Text("Terminal: "), sg.InputText(key="-IN-")],
           #[sg.Text("Output: "), sg.Output(key="-OUT-")],
           #[sg.Text("Output2: "), sg.Output(key='-OUTPUT-')],
-          [sg.Button('Enter'), sg.Button("Exit")],
+          #[sg.Button('Enter')bind_return_key=True), sg.Button("Exit")],
           # [sg.Button("Alien"), sg.Button("Aliens"), sg.Button("Alien 3")],
           # [sg.Exit(), sg.Button("Convert to CSV")]
           ]
@@ -36,8 +37,17 @@ while True:  # Event Loop
     # print(event, values) this was annoying it kept printing rubbish
     if event in (None, 'Exit'):
         break
-    if event == "Enter":
-        window['-OUTPUT-'].update(values['-IN-'])
+    if event == 'Enter':
+        if values['-IN-'] == 'Test':  # So this fails when you added a second if elif probably!
+            window['-OUTPUT-'].update('What shall we test?')
+        elif values['-IN-'] == 'wea':
+            window['-OUTPUT-'].update('Did you want weather?')
+        elif str('story') in values['-IN-']:
+            window['-OUTPUT-'].update('PRIORITY ONE:'"\n"
+                                      'INSURE RETURN OF ORGANISM'"\n"
+                                      'FOR ANALYSIS.'"\n"
+                                      'ALL OTHER CONSIDERATIONS SECONDARY.'"\n"
+                                      'CREW EXPENDABLE.'"\n")
     if event == "Alien":
         print("Excellent choice, now starting Alien Directors cut")
     if event == "Aliens":
@@ -49,3 +59,4 @@ while True:  # Event Loop
         img.show()
         break
 window.close()
+
