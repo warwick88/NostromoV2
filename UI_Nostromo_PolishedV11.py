@@ -2,7 +2,7 @@ import PySimpleGUI as sg
 import MovieInfoTerminalResponses as mr
 import EngineerGame as eg
 from pygame import mixer
-
+import SoundEffects as se
 
 
 # best guide is this https://www.pysimplegui.org/en/latest/cookbook/#recipe-printing-24-print-to-output-element
@@ -70,11 +70,7 @@ while True:  # Event Loop
                                       + list_dallas_values[2])
     elif event == "Alien":
         #good guide https://www.educative.io/answers/how-to-play-an-audio-file-in-pygame
-        mixer.init()
-        mixer.music.load('mother.wav')
-        print("music starting")
-        mixer.music.set_volume(0.2)
-        mixer.music.play()
+        se.mother_sounds()
         window['-OUTPUT-'].update('Now starting Alien Directors cut')
     elif event == "Engineer Game":
         # So this code works. It updates the windows as expected.
